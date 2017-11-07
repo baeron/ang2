@@ -1,17 +1,33 @@
-import { Input, Component } from '@angular/core';
+import { Component,
+         Input,
+         OnInit,
+         DoCheck,
+         OnChanges,
+         AfterContentInit,
+         AfterContentChecked,
+         AfterViewChecked,
+         AfterViewInit } from '@angular/core';
 @Component({
   selector: 'child-comp',
-  template: `<p>Имя пользователя {{userName}}</p>
-            <p>Возраст пользователя {{userAge}}</p>`
+  template: `<p>Привет {{name}}</p>`
 })
-export class ChildComponent {
-  @Input() userName: string;
-  _userAge: number;
-  @Input()
-    set userAge(age: number){
-      if(age<0) this._userAge = 0;
-      else if(age>100) this._userAge = 100;
-      else this._userAge = age;
-    }
-    get userAge() {return this._userAge;}
+export class ChildComponent implements OnInit, DoCheck, OnChanges, AfterContentInit, AfterContentChecked, AfterViewChecked, AfterViewInit {
+  @Input() name: string;
+  count:number=1;
+
+  ngOnInit() { this.log(`onInit`); }
+  ngOnChanges() {this.log(`onChanges`); }
+  ngDoCheck() {this.log(`DoCheck`); }
+  ngAfterContentInit() {this.log(`AfterContentInit`); }
+  ngAfterContentChecked() {this.log(`AfterContentChecked`); }
+  ngAfterViewChecked() {this.log(`AfterViewChecked`); }
+  ngAfterViewInit() {this.log(`AfterViewInit`); }
+
+
+
+
+  private log(msg: string) {
+    console.log(this.count + " . " + msg);
+    this.count++;
+  }
 }
