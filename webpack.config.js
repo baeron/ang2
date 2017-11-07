@@ -27,14 +27,21 @@ module.exports = {
                   } ,
                    'angular2-template-loader'
                ]
-            }
+            },{
+              test: /\.html$/,
+              loader: 'html-loader'
+            }, {
+                test: /\.css$/,
+                include: path.resolve(__dirname,'src/app'),
+                loader: 'raw-loader'
+              }
        ]
    },
    plugins: [
     new webpack.ContextReplacementPlugin(
         /angular(\|\/)core/,
-        path.resolve(__dirname, 'app'), // каталог с исходными файлами
-      {} // карта маршрутов
+        path.resolve(__dirname, 'src'), // каталог с исходными файлами
+        {} // карта маршрутов
     ),
     new webpack.optimize.CommonsChunkPlugin({
         name: ['app', 'polyfills']
