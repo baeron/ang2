@@ -1,33 +1,10 @@
-import { Component,
-         Input,
-         OnInit,
-         DoCheck,
-         OnChanges,
-         AfterContentInit,
-         AfterContentChecked,
-         AfterViewChecked,
-         AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 @Component({
   selector: 'child-comp',
-  template: `<p>Привет {{name}}</p>`
+  template: `<p>{{counter}}</p>`
 })
-export class ChildComponent implements OnInit, DoCheck, OnChanges, AfterContentInit, AfterContentChecked, AfterViewChecked, AfterViewInit {
-  @Input() name: string;
-  count:number=1;
-
-  ngOnInit() { this.log(`onInit`); }
-  ngOnChanges() {this.log(`onChanges`); }
-  ngDoCheck() {this.log(`DoCheck`); }
-  ngAfterContentInit() {this.log(`AfterContentInit`); }
-  ngAfterContentChecked() {this.log(`AfterContentChecked`); }
-  ngAfterViewChecked() {this.log(`AfterViewChecked`); }
-  ngAfterViewInit() {this.log(`AfterViewInit`); }
-
-
-
-
-  private log(msg: string) {
-    console.log(this.count + " . " + msg);
-    this.count++;
-  }
+export class ChildComponent {
+  counter: number = 0;
+  increment() { this.counter++; }
+  decrement() { this.counter--; }
 }
