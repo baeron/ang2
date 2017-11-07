@@ -2,15 +2,11 @@ import { Component} from '@angular/core';
 
 @Component({
 selector: 'my-app',
-template: `<div [ngClass]="{verdanaFont:true}">
-             <h1>Hello Angular 2</h1>
-             <p [ngClass]="{verdanaFont:false, segoePrintFont:true}">
+template: `<div [ngStyle]="{'font-size':'13px', 'font-family': 'Verdana'}">
+             <h1>Hello Angular 5</h1>
+             <p [ngStyle]="{'font-size':'14px', 'font-family':'Segeo Print'}">
                  Angular 5 представляет модульную архитектуру приложения
              </p>
-         </div>`,
-styles: [
- `.verdanaFont{font-size:13px; font-family:Verdana;}
- .segoePrintFont{font-size:14px; font-family:"Segoe Print";}`
-]
+         </div>`
 })
 export class AppComponent { }
