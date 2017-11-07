@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
+//var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
@@ -11,8 +12,6 @@ module.exports = {
        publicPath: '/public/',
        filename: "[name].js"       // название создаваемого файла
    },
-   // включаем создание карты исходных файлов
-   devtool: "source-map",
    resolve: {
     extensions: ['.ts', '.js']
   },
@@ -27,25 +26,18 @@ module.exports = {
                   } ,
                    'angular2-template-loader'
                ]
-            },{
-              test: /\.html$/,
-              loader: 'html-loader'
-            }, {
-                test: /\.css$/,
-                include: path.resolve(__dirname,'src/app'),
-                loader: 'raw-loader'
-              }
+            }
        ]
    },
    plugins: [
     new webpack.ContextReplacementPlugin(
-        /angular(\|\/)core/,
+        /angular(\\|\/)core/,
         path.resolve(__dirname, 'src'), // каталог с исходными файлами
-        {} // карта маршрутов
+      {} // карта маршрутов
     ),
     new webpack.optimize.CommonsChunkPlugin({
         name: ['app', 'polyfills']
-      }),
+    }),
     new UglifyJSPlugin()
   ]
 }
