@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
+import { LogService } from './log.service';
 import { Phone } from './phone';
        
 @Component({
@@ -36,7 +37,7 @@ import { Phone } from './phone';
                 </tbody>
               </table>
             </div>`,
-            providers: [DataService]
+            providers: [DataService, LogService]
 })
 export class AppComponent {
   items: Phone[] = [];
